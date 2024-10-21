@@ -1,0 +1,45 @@
+name: Python Scheduled Script
+
+on:
+  schedule:
+  - cron: "2 7 * * *"
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "America/New_York"
+      - name: Checkout repository content
+        uses: actions/checkout@v2
+        
+      - name: Setup Python Version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v2
+        with: 
+          path: "requirements.txt"
+
+      - name: Execute Python script
+        run: python commitData.py
+
+
+
+
+      - name: Commit files
+        run: 
+          git config --local user.name DJTheCreator
+          git config --local user.email diegocajiao@outlook.com
+          git add --all
+          git commit -am "Cloud Save $(date)"
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
