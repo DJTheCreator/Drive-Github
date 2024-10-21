@@ -33,12 +33,12 @@ jobs:
 
 
 
-        - name: Commit files
-          run: 
-            git config --local user.name DJTheCreator
-            git config --local user.email diegocajiao@outlook.com
-            git add --all
-            git commit -am "Cloud Save $(date)"
-          env:
-            REPO_KEY: ${{secrets.GITHUB_TOKEN}}
-            username: github-actions
+      - name: Commit files
+        run: 
+          git config --local user.name DJTheCreator
+          git config --local user.email diegocajiao@outlook.com
+          git add --all
+          git commit -am "Cloud Save $(date)"
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
