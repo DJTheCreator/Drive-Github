@@ -25,7 +25,8 @@ jobs:
 
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v2
-        with: "requirements.txt"
+        with: 
+          path: "requirements.txt"
 
       - name: Execute Python script
         run: python commitData.py
